@@ -2,7 +2,7 @@
 Simulate audio driver parsing errors. Bitcrushing, noise bursts
 */
 
-Udef(\ck_corrupt_driver, { |rate = 8, noise = 0.4, bits = 6, mix = 1.0|
+Udef(\ck_corruptDriver, { |rate = 8, noise = 0.4, bits = 6, mix = 1.0|
 	var in, gate, levels, crushed, burst, sig;
 	in = UIn.ar(0, 2);
 	gate = ToggleFF.kr(Dust.kr(rate));
