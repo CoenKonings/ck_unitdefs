@@ -121,7 +121,10 @@ def.prepareFunc_({ |servers, unit, action, startPos|
 					argSpec.private.not
 					and: { argSpec.name != \chaos }
 					and: { argSpec.name.asString.beginsWith("freq").not }
-					and: { argSpec.name.asString.beginsWith("amp").not }
+					and: { argSpec.name.asString != "att" }
+					and: { argSpec.name.asString != "rel" }
+					and: { argSpec.name.asString != "sus" }
+					and: { argSpec.name.asString != "amp" }
 					// Keep routing.
 					and: { argSpec.name.asString.beginsWith("u_").not }
 					and: { argSpec.spec.notNil }
