@@ -138,9 +138,15 @@ def.prepareFunc_({ |servers, unit, action, startPos|
 });
 
 def.uchainInitFunc_({ |unit, chain|
-	// Arm at construction too, so chaos works before the chain is played.
+	// Arm at construction, so chaos works before the chain is played.
 	def.prepareFunc.value( nil, unit, nil, nil );
 	unit;
+});
+
+// When the chain is disposed, remove it from the Library as well.
+def.disposeFunc_({ |unit|
+	Library.at( \ckRoatChaos, unit ) !? (_.remove);
+	Library.global.removeAtPath( [ \ckRoatChaos, unit ] );
 });
 
 def;
