@@ -77,12 +77,10 @@ var def = Udef(\ck_roat, { |
 	nCD = combine.(o3, o4, modeCD);
 	mix = (nAB + nBC + nCD) / 3;  // Unity mix
 
-	// Bitcrush to simulate chip.
-	levels = (2 ** 8).max(2);
+	levels = 2 ** 8;
 	sig = Latch.ar(mix, Impulse.ar(8000));
-	sig = (sig * (levels * 0.5)).round / (levels * 0.5);
 	sig = RLPF.ar(sig.clip2(1), cutoff, rq);
-	// Re-simulate chip after lowpass.
+	// simulate chip.
 	sig = (sig * (levels * 0.5)).round / (levels * 0.5);
 	env = EnvGen.kr(Env.perc(att, rel), doneAction: 0).max(sus);
 	sig = (sig * env * amp).clip2(1);
